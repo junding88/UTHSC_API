@@ -15,6 +15,7 @@ This is the API for UT HSC Doctoral Dissertation Proposal Defense Form process.
 
         {
             "student_name": "Doe, John, David",
+            "student_email_address": "john.doe@uthsc.edu",
             "degree_program": "PhD",
             "academic_advisor": "James Cooper",
             "major_department": "Oncology",
@@ -82,9 +83,9 @@ Should the department name be used or an ID?
         {
             "faculties":
             [
-                {"faculty": "James Cooper"},
-                {"faculty": "Selina Meyer"},
-                {"faculty": "Gloria Chang"}
+                {"faculty": "James Cooper", "email_address": "james.cooper@uthsc.edu"},
+                {"faculty": "Selina Meyer", "email_address": "selina.meyer@uthsc.edu"},
+                {"faculty": "Gloria Chang", "email_address": "gloria.chang@uthsc.edu"}
             ]
 
         }
@@ -98,6 +99,7 @@ Should the department name be used or an ID?
 
         {
             "process_id": "1234567",
+            "process_start_date": "09/02/2016",
             "process_status": "incomplete",
             "student_name": "Doe, John, David",
             "dissertation_proposal_project_title": "How to cure cancer",
