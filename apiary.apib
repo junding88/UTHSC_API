@@ -1,0 +1,175 @@
+FORMAT: 1A
+HOST: http://polls.apiblueprint.org/
+
+# UT HSC Dissertation Proposal Defense
+
+This is the API for UT HSC Doctoral Dissertation Proposal Defense Form process.
+
+## Get Student Information [/getStudentInformation?student_id]
++ Parameters
+    + student_id (number) - ID of the student whose information is to be retrieved
+
+### Retrieve student information [GET]
+
++ Response 200 (application/json)
+
+        {
+            "student_name": "Doe, John, David",
+            "degree_program": "PhD",
+            "academic_advisor": "James Cooper",
+            "major_department": "Oncology",
+            "discipline": "Pediatric Oncology",
+            "major_department_chair": "Selina Meyer",
+            "minor_advisor_name": "Jane Jones",
+            "minor_department": "Cardiology",
+            "minor_discipline ": "Invasive Cardiology",
+            "second_minor_advisor_name": "Gloria Chang",
+            "second_minor_department": "Pediatrics",
+            "second_minor_discipline ": "General Pediatrics",
+            "dissertation_supervisor_name": "Rudy Randall",
+            "dissertation_supervisor_department": "Oncology",
+            "dissertation_supervisor_discipline": "Pediatric Oncology"
+            "assistant_dean": "Richard Hughes"
+        }
+        
+## Get all schools [/getSchools]
+Is there an ID of school to be used in the query below?
+
+### Retrieve all schools [GET]
+
++ Response 200 (application/json)
+
+        {
+            "schools":
+            [
+                {"school": "UT Medical School"},
+                {"school": "UT Health Science Center"},
+                {"school": "Baylor Medical School"}
+            ]
+
+        }
+        
+## Get all departments of a school [/getDepartments?school]
+Should the shcool name be used or an ID?
+
++ Parameters
+    + school (string) - school selected by student
+
+### Retrieve all departments of a school [GET]
+
++ Response 200 (application/json)
+
+        {
+            "departments":
+            [
+                {"department": "Oncology"},
+                {"department": "Cardiology"},
+                {"department": "Pediatrics"}
+            ]
+
+        }
+        
+## Get all faculty members of a department [/getFaculty?department]
+Should the department name be used or an ID?
+
++ Parameters
+    + department (string) - department selected by student
+
+### Retrieve all faculty members of a department [GET]
+
++ Response 200 (application/json)
+
+        {
+            "faculties":
+            [
+                {"faculty": "James Cooper"},
+                {"faculty": "Selina Meyer"},
+                {"faculty": "Gloria Chang"}
+            ]
+
+        }
+        
+## Update status of a process [/updateStatus]
+
+### Update the status of a Dissertation Proposal Defense process [POST]
+
+
++ Request (application/json)
+
+        {
+            "process_id": "1234567",
+            "process_status": "incomplete",
+            "student_name": "Doe, John, David",
+            "dissertation_proposal_project_title": "How to cure cancer",
+            "date_of_proposal_defense": "10/1/2016",
+            "approvers": [
+                {
+                    "academic_advisor": "James Cooper",
+                    "major_department": "Oncology",
+                    "discipline": "Pediatric Oncology",
+                    "approval_date": ""
+                },
+                {
+                    "major_department_chair": "Selina Meyer",
+                    "approval_date": ""
+                },
+                {
+                    "minor_advisor_name": "Jane Jones",
+                    "minor_department": "Cardiology",
+                    "minor_discipline ": "Invasive Cardiology",
+                    "approval_date": ""
+                },
+                {
+                    "second_minor_advisor_name": "Gloria Chang",
+                    "second_minor_department": "Pediatrics",
+                    "second_minor_discipline ": "General Pediatrics",
+                    "approval_date": ""
+                },
+                {
+                    "dissertation_supervisor_name": "Rudy Randall",
+                    "dissertation_supervisor_department": "Oncology",
+                    "dissertation_supervisor_discipline": "Pediatric Oncology",
+                    "approval_date": ""
+                },
+                {
+                    "assistant_dean": "Richard Hughes",
+                    "approval_date": ""
+                },
+                {
+                    "optional_member_name": "Gloria Chang",
+                    "optional_member_department": "Pediatrics",
+                    "optional_member_discipline ": "General Pediatrics",
+                    "approval_date": ""
+                },
+                {
+                    "optional_member_name": "Gloria Chang",
+                    "optional_member_department": "Pediatrics",
+                    "optional_member_discipline ": "General Pediatrics",
+                    "approval_date": ""
+                },
+                {
+                    "external_member_name": "Gloria Chang",
+                    "external_member_department": "Pediatrics",
+                    "external_member_discipline ": "General Pediatrics",
+                    "approval_date": ""
+                },
+                {
+                    "external_member_name": "Gloria Chang",
+                    "external_member_department": "Pediatrics",
+                    "external_member_discipline ": "General Pediatrics",
+                    "approval_date": ""
+                }
+            ]
+        }
+
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: /questions/2
+
+    + Body
+
+            {
+                "updated": "yes"
+            }
