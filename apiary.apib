@@ -5,9 +5,9 @@ HOST: http://polls.apiblueprint.org/
 
 This is the API for UT HSC Doctoral Dissertation Proposal Defense Form process.
 
-## Get Student Information [/getStudentInformation?student_id]
+## Get Student Information [/getStudentInformation/student_key]
 + Parameters
-    + student_id (number) - ID of the student whose information is to be retrieved
+    + student_key (string) - ID of the student whose information is to be retrieved
 
 ### Retrieve student information [GET]
 
@@ -17,20 +17,57 @@ This is the API for UT HSC Doctoral Dissertation Proposal Defense Form process.
             "student_name": "Doe, John, David",
             "student_email_address": "john.doe@uthsc.edu",
             "degree_program": "PhD",
-            "academic_advisor": "James Cooper",
-            "major_department": "Oncology",
-            "discipline": "Pediatric Oncology",
-            "major_department_chair": "Selina Meyer",
-            "minor_advisor_name": "Jane Jones",
-            "minor_department": "Cardiology",
-            "minor_discipline ": "Invasive Cardiology",
-            "second_minor_advisor_name": "Gloria Chang",
-            "second_minor_department": "Pediatrics",
-            "second_minor_discipline ": "General Pediatrics",
-            "dissertation_supervisor_name": "Rudy Randall",
-            "dissertation_supervisor_department": "Oncology",
-            "dissertation_supervisor_discipline": "Pediatric Oncology"
-            "assistant_dean": "Richard Hughes"
+            "academic_advisor": 
+            {
+                "name": "James Cooper",
+                "key": "abc123"
+                "department_name": "Oncology",
+                "department_key": "abc123",
+                "discipline_name": "Pediatric Oncology",
+                "discipline_key": "abc123"
+            },
+            
+            "major_department_chair":
+            {
+                "name": "Selina Meyer",
+                "key": "abc123"
+            },
+            
+            "minor_advisor": 
+            {
+                "name": "Jane Jones",
+                "key": "abc123",
+                "department_name": "Cardiology",
+                "department_key": "abc123",
+                "discipline_name": "Invasive Cardiology"
+                "discipline_key": "abc123"
+             },
+             
+            "second_minor_advisor": 
+            {
+                "name": "Gloria Chang",
+                "key": "abc123",
+                "department_name": "Pediatrics",
+                "department_key": "abc123",
+                "discipline_name": "General Pediatrics",
+                "discipline_key": "abc123"
+            },
+            
+            "dissertation_supervisor":
+            {
+                "name": "Rudy Randall",
+                "key": "abc123",
+                "department_name": "Oncology",
+                "department_key": "abc123",
+                "discipline_name": "General Pediatrics",
+                "discipline_key": "abc123"
+            },
+            
+            "assistant_dean":
+            {
+                "name": "Richard Hughes",
+                "key": "abc123"
+            }
         }
         
 ## Get all schools [/getSchools]
@@ -43,18 +80,27 @@ Is there an ID of school to be used in the query below?
         {
             "schools":
             [
-                {"school": "UT Medical School"},
-                {"school": "UT Health Science Center"},
-                {"school": "Baylor Medical School"}
+                {"name": "UT Medical School",
+                 "key": "abc1234",
+                 "external": "true"
+                },
+                {"name": "UT Health Science Center"
+                 "key": "abc1234",
+                 "external": "true"
+                },
+                {"name": "Baylor Medical School"
+                 "key": "abc1234",
+                 "external": "true"
+                }
             ]
 
         }
         
-## Get all departments of a school [/getDepartments?school]
+## Get all departments of a school [/getDepartments/school_key]
 Should the shcool name be used or an ID?
 
 + Parameters
-    + school (string) - school selected by student
+    + school_key (string) - school selected by student
 
 ### Retrieve all departments of a school [GET]
 
@@ -63,18 +109,27 @@ Should the shcool name be used or an ID?
         {
             "departments":
             [
-                {"department": "Oncology"},
-                {"department": "Cardiology"},
-                {"department": "Pediatrics"}
+                {"name": "Oncology",
+                 "key": "abc1234",
+                 "school_key": "xyz789"
+                },
+                {"name": "Cardiology",
+                 "key": "abc1234",
+                 "school_key": "xyz789"
+                },
+                {"name": "Pediatrics",
+                 "key": "abc1234",
+                 "school_key": "xyz789"
+                }
             ]
 
         }
         
-## Get all faculty members of a department [/getFaculty?department]
+## Get all faculty members of a department [/getFaculty/department_key]
 Should the department name be used or an ID?
 
 + Parameters
-    + department (string) - department selected by student
+    + department_key (string) - department selected by student
 
 ### Retrieve all faculty members of a department [GET]
 
@@ -83,14 +138,26 @@ Should the department name be used or an ID?
         {
             "faculties":
             [
-                {"faculty": "James Cooper", "email_address": "james.cooper@uthsc.edu"},
-                {"faculty": "Selina Meyer", "email_address": "selina.meyer@uthsc.edu"},
-                {"faculty": "Gloria Chang", "email_address": "gloria.chang@uthsc.edu"}
+                {"name": "James Cooper",
+                 "key": "abc123",
+                 "email_address": "james.cooper@uthsc.edu",
+                 "department_key": "Oncology"
+                }
+                {"name": "Selina Meyer",
+                 "key": "abc123",
+                 "email_address": "selina.meyer@uthsc.edu",
+                 "department_key": "Oncology"
+                },
+                {"name": "Gloria Chang",
+                 "key": "abc123",
+                 "email_address": "gloria.chang@uthsc.edu",
+                 "department_key": "Oncology"                
+                }
             ]
 
         }
         
-## Update status of a process [/updateStatus]
+## Update status of a process [/updateDissertationDefenseStatus]
 
 ### Update the status of a Dissertation Proposal Defense process [POST]
 
@@ -101,67 +168,65 @@ Should the department name be used or an ID?
             "process_id": "1234567",
             "process_start_date": "09/02/2016",
             "process_status": "incomplete",
-            "student_name": "Doe, John, David",
+            "student_key": "abc123",
             "dissertation_proposal_project_title": "How to cure cancer",
             "date_of_proposal_defense": "10/1/2016",
-            "approvers": [
+            "approvers": {
+                "academic_advisor": 
                 {
-                    "academic_advisor": "James Cooper",
-                    "major_department": "Oncology",
-                    "discipline": "Pediatric Oncology",
+                    "key": "abc123",
+                    "department_key": "Oncology",
+                    "discipline_key": "abc123",
                     "approval_date": ""
                 },
+                "major_department_chair": 
                 {
-                    "major_department_chair": "Selina Meyer",
+                    "key": "abc123",
                     "approval_date": ""
                 },
+                "minor_advisor": 
                 {
-                    "minor_advisor_name": "Jane Jones",
-                    "minor_department": "Cardiology",
-                    "minor_discipline ": "Invasive Cardiology",
+                    "key": "abc123",
+                    "department_key": "abc123",
+                    "discipline_key": "abc123",
                     "approval_date": ""
                 },
+                "second_minor_advisor": 
                 {
-                    "second_minor_advisor_name": "Gloria Chang",
-                    "second_minor_department": "Pediatrics",
-                    "second_minor_discipline ": "General Pediatrics",
+                    "key": "abc123",
+                    "department_key": "abc123",
+                    "discipline_key": "abc123",
                     "approval_date": ""
                 },
+                "dissertation_supervisor":
                 {
-                    "dissertation_supervisor_name": "Rudy Randall",
-                    "dissertation_supervisor_department": "Oncology",
-                    "dissertation_supervisor_discipline": "Pediatric Oncology",
+                    "key": "abc123",
+                    "department_key": "abc123",
+                    "discipline_key": "abc123",
                     "approval_date": ""
                 },
+                "assistant_dean": 
                 {
-                    "assistant_dean": "Richard Hughes",
+                    "key": "abc123",
                     "approval_date": ""
                 },
-                {
-                    "optional_member_name": "Gloria Chang",
-                    "optional_member_department": "Pediatrics",
-                    "optional_member_discipline ": "General Pediatrics",
-                    "approval_date": ""
-                },
-                {
-                    "optional_member_name": "Gloria Chang",
-                    "optional_member_department": "Pediatrics",
-                    "optional_member_discipline ": "General Pediatrics",
-                    "approval_date": ""
-                },
-                {
-                    "external_member_name": "Gloria Chang",
-                    "external_member_department": "Pediatrics",
-                    "external_member_discipline ": "General Pediatrics",
-                    "approval_date": ""
-                },
-                {
-                    "external_member_name": "Gloria Chang",
-                    "external_member_department": "Pediatrics",
-                    "external_member_discipline ": "General Pediatrics",
-                    "approval_date": ""
-                }
-            ]
+                "optional_member": [
+                    {
+                        "key": "abc123",
+                        "department_key": "abc123",
+                        "discipline_key": "abc123",
+                        "approval_date": ""
+                    }
+                ],
+                "external_member": [
+                    {
+                        "key": "abc123",
+                        "department_key": "abc123",
+                        "discipline_key": "abc123",
+                        "approval_date": ""
+                    }
+                ]
+            }
         }
 
 + Response 201 (application/json)
@@ -173,5 +238,10 @@ Should the department name be used or an ID?
     + Body
 
             {
-                "updated": "yes"
+                "messages": [
+                    {
+                        "code": "123",
+                        "message": "something went wrong"
+                    }
+                ]
             }
