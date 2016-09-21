@@ -5,7 +5,7 @@ HOST: http://private-e6bf93-uthscdissertationproposaldefense.apiary-mock.com/
 
 This is the API for UT HSC Doctoral Dissertation Proposal Defense Form process.
 
-## Get Student Information [/getStudentInformation]
+## Get Student Information [/getStudentInformation/{student_key}]
 + Parameters
     + student_key (string) - ID of the student whose information is to be retrieved
 
@@ -96,7 +96,7 @@ Is there an ID of school to be used in the query below?
 
         }
         
-## Get all departments of a school [/getDepartments]
+## Get all departments of a school [/getDepartments/{school_key}]
 Should the shcool name be used or an ID?
 
 + Parameters
@@ -125,7 +125,7 @@ Should the shcool name be used or an ID?
 
         }
         
-## Get all faculty members of a department [/getFaculty]
+## Get all faculty members of a department [/getFaculty/{department_key}]
 Should the department name be used or an ID?
 
 + Parameters
