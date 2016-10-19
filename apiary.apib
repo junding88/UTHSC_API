@@ -77,25 +77,22 @@ Is there an ID of school to be used in the query below?
 
 + Response 200 (application/json)
 
-        {
-            "schools":
-            [
-                {"name": "UT Medical School",
-                 "key": "abc1234",
-                 "external": "true"
-                },
-                {"name": "UT Health Science Center",
-                 "key": "abc1234",
-                 "external": "true"
-                },
-                {"name": "Baylor Medical School",
-                 "key": "abc1234",
-                 "external": "true"
-                }
-            ]
+        [
+            {"name": "UT Medical School",
+             "key": "abc1234",
+             "external": "true"
+            },
+            {"name": "UT Health Science Center",
+             "key": "abc1234",
+             "external": "true"
+            },
+            {"name": "Baylor Medical School",
+             "key": "abc1234",
+             "external": "true"
+            }
+        ]
 
-        }
-        
+
 ## Get all departments of a school [/getDepartments/{school_key}]
 Should the shcool name be used or an ID?
 
@@ -106,25 +103,21 @@ Should the shcool name be used or an ID?
 
 + Response 200 (application/json)
 
-        {
-            "departments":
-            [
-                {"name": "Oncology",
-                 "key": "abc1234",
-                 "school_key": "xyz789"
-                },
-                {"name": "Cardiology",
-                 "key": "abc1234",
-                 "school_key": "xyz789"
-                },
-                {"name": "Pediatrics",
-                 "key": "abc1234",
-                 "school_key": "xyz789"
-                }
-            ]
+        [
+            {"name": "Oncology",
+             "key": "abc1234",
+             "school_key": "xyz789"
+            },
+            {"name": "Cardiology",
+             "key": "abc1234",
+             "school_key": "xyz789"
+            },
+            {"name": "Pediatrics",
+             "key": "abc1234",
+             "school_key": "xyz789"
+            }
+        ]
 
-        }
-        
 ## Get all faculty members of a department [/getFaculty/{department_key}]
 Should the department name be used or an ID?
 
@@ -135,28 +128,24 @@ Should the department name be used or an ID?
 
 + Response 200 (application/json)
 
-        {
-            "faculties":
-            [
-                {"name": "James Cooper",
-                 "key": "abc123",
-                 "email_address": "james.cooper@uthsc.edu",
-                 "department_key": "Oncology"
-                }
-                {"name": "Selina Meyer",
-                 "key": "abc123",
-                 "email_address": "selina.meyer@uthsc.edu",
-                 "department_key": "Oncology"
-                },
-                {"name": "Gloria Chang",
-                 "key": "abc123",
-                 "email_address": "gloria.chang@uthsc.edu",
-                 "department_key": "Oncology"                
-                }
-            ]
+        [
+            {"name": "James Cooper",
+             "key": "abc123",
+             "email_address": "james.cooper@uthsc.edu",
+             "department_key": "Oncology"
+            }
+            {"name": "Selina Meyer",
+             "key": "abc123",
+             "email_address": "selina.meyer@uthsc.edu",
+             "department_key": "Oncology"
+            },
+            {"name": "Gloria Chang",
+             "key": "abc123",
+             "email_address": "gloria.chang@uthsc.edu",
+             "department_key": "Oncology"                
+            }
+        ]
 
-        }
-        
 ## Update status of a process [/updateDissertationDefenseStatus]
 
 ### Update the status of a Dissertation Proposal Defense process [POST]
